@@ -1,57 +1,51 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import {
+  useGetSingleTasksQuery,
+  useUpdateTaskMutation,
+} from "../../redux/features/apiSlice/apiSliceTwo";
 
 const UpdateData = () => {
   const { id } = useParams();
-  // Create api
-  const users = {
-    image: "",
-    title: "",
-    description: "",
-    genre: "",
-    origin: "",
-    starting_date: "",
-    isRunning: "",
-    ending_date: "",
-    no_of_seasons: "",
-    no_of_episodes: "",
-    runtime: "",
-    date_i_watched: "",
-    my_rating: "",
-    imdb_rating: "",
-    my_review: "",
-  };
+  // console.log(id);
 
-  const [user, setUser] = useState(users);
+  const { data: myNewData, isError, isLoading } = useGetSingleTasksQuery(id);
+  const [user, setUser] = useState(myNewData);
+  // console.log(user);
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    console.log(user);
+    // console.log(user);
   };
   const navigate = useNavigate();
-  const submitForm = async (e) => {
-    e.preventDefault();
-    await axios.patch(`http://localhost:3030/users/` + id, user);
-    navigate("/");
-  };
 
-  useEffect(() => {
-    axios.get(`http://localhost:3030/users/` + id).then((res) => {
-      setUser(res.data);
-    });
-  }, [id]);
+  const [updateTask] = useUpdateTaskMutation();
+  // console.log(updateTask)
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    const task = {
+      id: id,
+      updatedTask: user,
+    };
+    console.log(task);
+    updateTask(task);
+    navigate("/");
+    location.reload();
+  };
 
   return (
     <div>
-       <div className="h-20 text-3xl flex justify-center items-center">
+      <div className="h-20 text-3xl flex justify-center items-center">
         Edit Yours Show Details
       </div>
       <div className=" flex justify-end m-4 ">
-        <Link className="border border-slate-200 p-3 " to="/">Shows List</Link>
+        <Link className="border border-slate-200 p-3 " to="/">
+          Shows List
+        </Link>
       </div>
-      
+
       <div>
         <form onSubmit={submitForm}>
           <div>

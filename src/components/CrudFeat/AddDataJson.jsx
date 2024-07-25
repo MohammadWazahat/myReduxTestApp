@@ -1,7 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
+import { useAddTaskMutation } from "../../redux/features/apiSlice/apiSliceTwo";
 
 const AddDataJson = () => {
   const [values, setValues] = useState({
@@ -24,17 +23,16 @@ const AddDataJson = () => {
 
   const navigate = useNavigate();
 
+  const [addTask] = useAddTaskMutation();
+  // console.log(addTask)
+
   const submitForm = (e) => {
     e.preventDefault();
     console.log(values);
-    axios
-      .post("http://localhost:3030/users", values)
-      .then((res) => {
-        console.log(res);
-        // hook to navigate back to the page
-        navigate("/");
-      })
-      .catch((err) => console.log(err));
+    addTask(values);
+    navigate("/");
+    location.reload();
+    // setValues("");
   };
 
   return (
@@ -59,14 +57,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="image"
-                  name="image"
-                  onChange={(e) =>
-                    setValues({ ...values, image: e.target.value })
-                  }
-                />
-             
+                type="text"
+                placeholder="image"
+                name="image"
+                onChange={(e) =>
+                  setValues({ ...values, image: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -74,13 +71,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="title"
-                  name="title"
-                  onChange={(e) =>
-                    setValues({ ...values, title: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="title"
+                name="title"
+                onChange={(e) =>
+                  setValues({ ...values, title: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -88,13 +85,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="description"
-                  name="description"
-                  onChange={(e) =>
-                    setValues({ ...values, description: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="description"
+                name="description"
+                onChange={(e) =>
+                  setValues({ ...values, description: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -102,13 +99,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="genre"
-                  name="genre"
-                  onChange={(e) =>
-                    setValues({ ...values, genre: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="genre"
+                name="genre"
+                onChange={(e) =>
+                  setValues({ ...values, genre: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -116,13 +113,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="origin"
-                  name="origin"
-                  onChange={(e) =>
-                    setValues({ ...values, origin: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="origin"
+                name="origin"
+                onChange={(e) =>
+                  setValues({ ...values, origin: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -130,13 +127,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="starting_date"
-                  name="starting_date"
-                  onChange={(e) =>
-                    setValues({ ...values, starting_date: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="starting_date"
+                name="starting_date"
+                onChange={(e) =>
+                  setValues({ ...values, starting_date: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -144,13 +141,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="isRunning"
-                  name="isRunning"
-                  onChange={(e) =>
-                    setValues({ ...values, isRunning: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="isRunning"
+                name="isRunning"
+                onChange={(e) =>
+                  setValues({ ...values, isRunning: e.target.value })
+                }
+              />
             </div>
             <div className="flex  m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -158,13 +155,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="ending_date"
-                  name="ending_date"
-                  onChange={(e) =>
-                    setValues({ ...values, ending_date: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="ending_date"
+                name="ending_date"
+                onChange={(e) =>
+                  setValues({ ...values, ending_date: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -172,13 +169,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="no_of_seasons"
-                  name="no_of_seasons"
-                  onChange={(e) =>
-                    setValues({ ...values, no_of_seasons: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="no_of_seasons"
+                name="no_of_seasons"
+                onChange={(e) =>
+                  setValues({ ...values, no_of_seasons: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -186,13 +183,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="no_of_episodes"
-                  name="no_of_episodes"
-                  onChange={(e) =>
-                    setValues({ ...values, no_of_episodes: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="no_of_episodes"
+                name="no_of_episodes"
+                onChange={(e) =>
+                  setValues({ ...values, no_of_episodes: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -200,13 +197,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="runtime"
-                  name="runtime"
-                  onChange={(e) =>
-                    setValues({ ...values, runtime: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="runtime"
+                name="runtime"
+                onChange={(e) =>
+                  setValues({ ...values, runtime: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -214,13 +211,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="date_i_watched"
-                  name="date_i_watched"
-                  onChange={(e) =>
-                    setValues({ ...values, date_i_watched: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="date_i_watched"
+                name="date_i_watched"
+                onChange={(e) =>
+                  setValues({ ...values, date_i_watched: e.target.value })
+                }
+              />
             </div>
             <div className="flex  m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -228,13 +225,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="my_rating"
-                  name="my_rating"
-                  onChange={(e) =>
-                    setValues({ ...values, my_rating: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="my_rating"
+                name="my_rating"
+                onChange={(e) =>
+                  setValues({ ...values, my_rating: e.target.value })
+                }
+              />
             </div>
             <div className="flex   m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -242,13 +239,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="imdb_rating"
-                  name="imdb_rating"
-                  onChange={(e) =>
-                    setValues({ ...values, imdb_rating: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="imdb_rating"
+                name="imdb_rating"
+                onChange={(e) =>
+                  setValues({ ...values, imdb_rating: e.target.value })
+                }
+              />
             </div>
             <div className="flex m-2 p-2">
               <div className=" m-2 p-2 basis-1/4">
@@ -256,13 +253,13 @@ const AddDataJson = () => {
               </div>
               <input
                 className="border border-gray-200 m-2 p-2 basis-3/4"
-                  type="text"
-                  placeholder="my_review"
-                  name="my_review"
-                  onChange={(e) =>
-                    setValues({ ...values, my_review: e.target.value })
-                  }
-                />
+                type="text"
+                placeholder="my_review"
+                name="my_review"
+                onChange={(e) =>
+                  setValues({ ...values, my_review: e.target.value })
+                }
+              />
             </div>
             <div className=" m-2 p-2 flex justify-center items-center">
               <button

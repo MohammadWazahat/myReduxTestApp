@@ -1,7 +1,7 @@
 import React from "react";
 
 const SingleCardData = (user) => {
-  console.log(user);
+  // console.log(user);
   return (
     <div className="flex justify-between items-center ">
       <div className=" m-2 p-2 mr-8">

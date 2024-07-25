@@ -1,10 +1,11 @@
 import React from 'react'
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import AddDataJson from './AddDataJson';
-import GetJsonData from './GetJsonData';
-import UpdateData from './UpdateData';
-import ReadSingleData from './ReadSingleData';
+import AddDataJson from './CrudFeat/AddDataJson';
+import GetJsonData from './CrudFeat/GetJsonData';
+import UpdateData from './CrudFeat/UpdateData';
+import ReadSingleData from './CrudFeat/ReadSingleData';
 import TestRedux from './TestRedux/TestRedux';
+import RtkHome from "./TestRtkQuery/RtkHome"
 
 
 const MyApp = () => {
@@ -29,6 +30,10 @@ const MyApp = () => {
     {
       path : "/testRedux",
       element : <TestRedux/> ,
+    },
+    {
+      path : "/testRtkQuery",
+      element : <RtkHome/> ,
     },
 
   ])
